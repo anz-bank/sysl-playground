@@ -119,7 +119,7 @@ func (p *PageView) Render() vecty.ComponentOrHTML {
 										// When input is typed into the textarea, update the local
 										// component state and rerender.
 										event.Input(func(e *vecty.Event) {
-											p.Plantuml = e.Target.Get("value").String()
+											p.Input = e.Target.Get("value").String()
 											vecty.Rerender(p)
 										}),
 									),
