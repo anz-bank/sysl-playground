@@ -12,9 +12,11 @@ require (
 	github.com/go-openapi/spec v0.19.5 // indirect
 	github.com/go-openapi/strfmt v0.19.4 // indirect
 	github.com/go-openapi/swag v0.19.6 // indirect
-	github.com/gopherjs/vecty v0.0.0-20191227222824-6a0a25ee5a96
+	github.com/gopherjs/vecty v0.0.0-20200328200803-52636d1f7aba
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/shurcooL/go v0.0.0-20200502201357-93f07166e636 // indirect
+	github.com/shurcooL/go-goon v0.0.0-20170922171312-37c2f522c041 // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/afero v1.2.2
 	go.mongodb.org/mongo-driver v1.2.1 // indirect

@@ -215,7 +215,7 @@ func (m *Markdown) Render() (res vecty.ComponentOrHTML) {
 
 	output, err := syslUtil.Parse(m.Input, m.Command)
 	check(err)
-	image := fmt.Sprintf(`<img src="%s/svg/%s" width="150% height="150%">`, m.Plantuml, string(output))
+	image := fmt.Sprintf(`<img src="%s/svg/~1%s" width="150% height="150%">`, m.Plantuml, string(output))
 
 	return elem.TableData(vecty.Markup(vecty.UnsafeHTML(image)))
 }
