@@ -1,6 +1,6 @@
 # sysl-playground
 
-Sysl Playground is running in http://play.sysl.io/.
+Sysl Playground is the live playground for [Sysl](http://sysl.io/) which is running in http://play.sysl.io/.
 
 ## Features
 
