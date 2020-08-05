@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/Joshcarp/sysl-playground/pkg/syslUtil"
-	"github.com/Joshcarp/sysl-playground/pkg/urls"
+	"github.com/anz-bank/sysl-playground/pkg/syslUtil"
+	"github.com/anz-bank/sysl-playground/pkg/urls"
 	"github.com/gopherjs/vecty"
 	"github.com/gopherjs/vecty/elem"
 	"github.com/gopherjs/vecty/event"
