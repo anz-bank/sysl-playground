@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/anz-bank/sysl-playground/pkg/syslUtil"
+	"github.com/anz-bank/sysl-playground/pkg/syslutil"
 	"github.com/anz-bank/sysl-playground/pkg/urls"
 	"github.com/gopherjs/vecty"
 	"github.com/gopherjs/vecty/elem"
@@ -213,7 +213,7 @@ func (m *Markdown) Render() (res vecty.ComponentOrHTML) {
 		}
 	}()
 
-	output, err := syslUtil.Parse(m.Input, m.Command)
+	output, err := syslutil.Parse(m.Input, m.Command)
 	check(err)
 	image := fmt.Sprintf(`<img src="%s/svg/~1%s" width="150% height="150%">`, m.Plantuml, string(output))
 
