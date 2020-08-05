@@ -1,4 +1,4 @@
-package syslUtil
+package syslutil
 
 import (
 	"errors"
