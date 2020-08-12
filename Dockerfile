@@ -1,22 +1,21 @@
-FROM heroku/heroku:18-build as build
-
-COPY . /app
-WORKDIR /app
-
-# Setup buildpack
-RUN mkdir -p /tmp/buildpack/heroku/go /tmp/build_cache /tmp/env
-RUN curl https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/go.tgz | tar xz -C /tmp/buildpack/heroku/go
-
-#Execute Buildpack
-RUN STACK=heroku-18 /tmp/buildpack/heroku/go/bin/compile /app /tmp/build_cache /tmp/env
+FROM golang:1.14-alpine
+ENV PORT=80 
+ENV SYSL_PLANTUML=http://www.plantuml.com/plantuml
+RUN apk add --no-cache git
+#install sysl
 RUN GO111MODULE=on go get -u github.com/anz-bank/sysl/cmd/sysl
+RUN sysl --version
 
-# Prepare final, minimal image
-FROM heroku/heroku:18
-
-COPY --from=build /app /app
-ENV HOME /app
+# Set the Current Working Directory inside the container
 WORKDIR /app
-RUN useradd -m heroku
-USER heroku
-CMD /app/bin/sysl-playground
+
+COPY . .
+
+# Build the Go app
+RUN go build -o ./bin/sysl-playground .
+
+# This container exposes port 8080 to the outside world
+EXPOSE 80
+
+# Run the binary program produced by `go install`
+CMD ["./bin/sysl-playground"]

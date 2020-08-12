@@ -11,7 +11,9 @@
             "mode": "auto",
             "cwd": "${workspaceFolder}",
             "program": "${workspaceFolder}",
-            "env": {},
+            "env": {
+                "PORT": 3030
+            },
             "args": []
         }
     ]

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<title>The Sysl Playground</title>
+        <link rel="stylesheet" href="/static/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="/static/jquery-linedtextarea.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#code').linedtextarea();
+            });
+		</script>
+		<script src="/static/script.js"></script>
+	</head>
+	<body itemscope itemtype="http://schema.org/CreativeWork">
+		<div id="banner">
+			<div id="head" itemprop="name">The Sysl Playground</div>
+			<select id="example-list">
+
+			</select>
+			<label for="id" id="commandLabel">Command</label>
+			<input type="text" id="command"/>
+			<button type="button"id="run" class="runCode">Run</button>
+			<input type="button" value="Help" id="aboutButton">
+		</div>
+		<div id="wrap">
+			<textarea itemprop="description" id="code" name="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+		</div>
+		<div class="output">
+			<div class="outputTitle"><span>Output</span></div>
+			<div id="output">
+
+			</div>
+		</div>
+
+	</body>
+</html>

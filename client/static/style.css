@@ -1,0 +1,215 @@
+html {
+	height: 100%;
+}
+body {
+	color: black;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+a {
+	color: #009;
+}
+#wrap {
+	padding: 5px;
+	margin: 0;
+
+	position: absolute;
+	top: 50px;
+	bottom: 40%;
+	left: 0;
+	right: 0;
+
+	background: #2a2d3e;
+}
+
+#code, .output, pre, .lines {
+	/* The default monospace font on OS X is ugly, so specify Menlo
+	 * instead. On other systems the default monospace font will be used. */
+	font-family: Menlo, monospace;
+	font-size: 11pt;
+}
+
+#code {
+	color: #c0c7d5;
+	background: inherit;
+
+	width: 100%;
+	height: 100%;
+	padding: 0; margin: 0;
+	border: none;
+	outline: none;
+	resize: none;
+	wrap: off;
+	float: right;
+}
+.outputTitle {
+	margin: 0;
+	background-color: #E0EBF5;
+}
+.outputTitle > span {
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: #999;
+	color: #ffffff;
+}
+.output {
+	position: absolute;
+	top: 60%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+#output {
+	padding: 1rem;
+	height: 100%;
+}
+#output > * {
+	float: left;
+}
+#output > textarea {
+	width: 100%;
+	height: 100%;
+}
+.output .system, .output .loading {
+	color: #999;
+}
+.output .stderr, .output .error {
+	color: #900;
+}
+.output pre {
+	margin: 0;
+}
+#banner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 50px;
+	background-color: #E0EBF5;
+}
+#banner > * {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 5px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	height: 30px;
+}
+#head {
+	padding-left: 10px;
+	padding-right: 20px;
+	padding-top: 5px;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+#aboutButton {
+	margin-left: auto;
+	margin-right: 15px;
+}
+input[type=button] {
+	height: 30px;
+	border: 1px solid #375EAB;
+	font-size: 16px;
+	font-family: sans-serif;
+	background: #375EAB;
+	color: white;
+	position: static;
+	top: 1px;
+	border-radius: 5px;
+	-webkit-appearance: none;
+}
+#banner > select, #command {
+	font-size: 0.875rem;
+	border: 0.0625rem solid #375EAB;
+}
+#commandLabel {
+	line-height: 30px;
+    margin-right: 0;
+    padding: 0 10px;
+    background-color: gray;
+    border-radius: 5px 0 0 5px;
+	color: white;
+	font-family: sans-serif;
+	
+}
+
+
+#command {
+	width: 500px;
+	margin-left: 0;
+    border-radius: 0 5px 5px 0;
+}
+#command:focus {
+	outline: none;
+}
+
+.lines {
+	float: left;
+	overflow: hidden;
+	text-align: right;
+	border-right: 1px solid #4c4747;
+	width: 4%;
+}
+.lines div {
+	padding-right: 5px;
+	color: lightgray;
+	margin-left: 10px;
+    margin-right: 10px;
+}
+.lineerror {
+	color: red;
+	background: #FDD;
+}
+.exit {
+	color: lightgray;
+}
+.runCode {
+	position: relative;
+	width: 100px;
+	height: 30px;
+	border: 1px solid #375EAB;
+	font-size: 16px;
+	font-family: sans-serif;
+	background: #375EAB;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.runCode::after{
+    content: "";
+    background: url(/static/images/runCode.png) no-repeat;
+    position: absolute;
+    left: 8px;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    margin-top: -10px;
+}
+.runCode.loading, .runCode.loading:hover {
+    background-color: #ccc;
+}
+
+.runCode.loading::after {
+    background: url(/static/images/running.png) no-repeat;
+    -webkit-animation: spin 1.5s linear infinite;
+    -moz-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}

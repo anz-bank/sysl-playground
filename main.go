@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -10,12 +12,33 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type compileContent struct {
+	Code    string
+	Command []string
+}
+
 func compile(w http.ResponseWriter, r *http.Request) {
+	var c compileContent
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Printf("FATAL IO reader issue %s ", err.Error())
+	}
+	json.Unmarshal(body, &c)
+
+	args := c.Command
+	compileResult, err := syslutil.Execute(c.Code, args)
+	if err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(err.Error()))
+		return
+	}
+	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
-	args := []string{"sd", "-o", "./tmp/call-login-sequence.png", "-s", "MobileApp <- Login", "./tmp/hello.sysl"}
-	syslutil.Execute(args)
-	w.WriteHeader(http.StatusCreated)
-	w.Write([]byte(`{"message": "post called"}`))
+
+	if err := json.NewEncoder(w).Encode(compileResult); err != nil {
+		panic(err)
+	}
 }
 
 func main() {
@@ -23,8 +46,10 @@ func main() {
 	r := mux.NewRouter()
 	api := r.PathPrefix("/api/").Subrouter()
 	api.HandleFunc("/compile", compile).Methods(http.MethodPost)
-
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir(".")))
+	api.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte(`{"message": "pong"}`))
+	}).Methods(http.MethodGet)
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./client")))
 	log.Printf("Server is running on: %s\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
