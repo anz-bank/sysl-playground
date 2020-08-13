@@ -8,8 +8,8 @@ import (
 	"os"
 
 	syslutil "github.com/anz-bank/new-sysl-playground/syslUtil"
-
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 type compileContent struct {
@@ -52,7 +52,12 @@ func main() {
 	api.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`{"message": "pong"}`))
 	}).Methods(http.MethodGet)
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},
+	})
+
+	handler := c.Handler(r)
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./client")))
 	log.Printf("Server is running on: %s\n", port)
-	log.Fatal(http.ListenAndServe(":"+port, r))
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }

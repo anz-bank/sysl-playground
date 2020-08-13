@@ -12,6 +12,7 @@ require (
 	github.com/google/uuid v1.1.1
 	github.com/gorilla/mux v1.7.4
 	github.com/mailru/easyjson v0.7.2 // indirect
+	github.com/rs/cors v1.7.0
 	github.com/spf13/afero v1.3.3 // indirect
 	github.com/stretchr/objx v0.3.0 // indirect
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381 // indirect
