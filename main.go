@@ -43,6 +43,9 @@ func compile(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3030"
+	}
 	r := mux.NewRouter()
 	api := r.PathPrefix("/api/").Subrouter()
 	api.HandleFunc("/compile", compile).Methods(http.MethodPost)
