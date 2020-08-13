@@ -21,3 +21,6 @@ sysl-playground written in [go vecty](https://github.com/gopherjs/vecty)
 go run server/server.go
 ```
 Open http://localhost:3030/ to see the playground website.
+
+## Deployment
+This application is currently hosted via [Netlify](https://www.netlify.com/)
