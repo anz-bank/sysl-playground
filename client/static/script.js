@@ -1,17 +1,28 @@
 $(document).ready(function() {
+    loadCodeAndCommand($('#example-list').val())
     //load dropdown
     exampleList.map(function(example) {
         $("#example-list").append(
             `<option value="${example.name}">${example.name}</option>`
-        )
+            )
     });
-    loadCodeAndCommand($('#example-list').val())
+        
+    loadParams()
 
     $('#run').on('click', compileCode)
     $('#example-list').on('change', function(){
         loadCodeAndCommand($(this).val())
     })
 
+    function loadParams(){
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var example = urlParams.get('example');
+        if(example) {
+            $('#example-list').val(example)
+            loadCodeAndCommand(example)
+        }
+    }
 
     function loadCodeAndCommand(name) {
         var example = exampleList.find( x=> x.name == name)
