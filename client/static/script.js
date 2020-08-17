@@ -22,6 +22,9 @@ $(document).ready(function() {
             $('#example-list').val(example)
             loadCodeAndCommand(example)
         }
+        else {
+            loadCodeAndCommand(exampleList[0].name)
+        }
     }
 
     function loadCodeAndCommand(name) {
