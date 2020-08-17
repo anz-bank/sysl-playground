@@ -168,6 +168,17 @@ input[type=button] {
 .exit {
 	color: lightgray;
 }
+.cmdHelp {
+	position: relative;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #375EAB;
+	font-size: 16px;
+	font-family: sans-serif;
+	background: #375EAB;
+	color: white;
+	border-radius: 5px;
+}
 .runCode {
 	position: relative;
 	width: 100px;
