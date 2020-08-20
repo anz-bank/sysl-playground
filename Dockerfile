@@ -1,21 +1,26 @@
-FROM golang:1.14-alpine
-ENV PORT=80 
-ENV SYSL_PLANTUML=http://www.plantuml.com/plantuml
-RUN apk add --no-cache git
-#install sysl
-RUN GO111MODULE=on go get -u github.com/anz-bank/sysl/cmd/sysl
-RUN sysl --version
-
-# Set the Current Working Directory inside the container
+FROM golang:1.14-alpine AS builder
 WORKDIR /app
-
 COPY . .
 
 # Build the Go app
 RUN go build -o ./bin/sysl-playground .
 
-# This container exposes port 8080 to the outside world
-EXPOSE 80
+FROM alpine:latest
 
-# Run the binary program produced by `go install`
-CMD ["./bin/sysl-playground"]
+ENV PORT=80
+RUN apk add --no-cache go maven openjdk8 graphviz font-noto-cjk bash
+RUN go version
+ENV GOPATH /go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+ENV SYSL_PLANTUML=http://localhost:8080/plantuml
+
+#install sysl
+RUN GOPATH=$(go env GOPATH)
+RUN GO111MODULE=on go get -u github.com/anz-bank/sysl/cmd/sysl
+RUN sysl --version
+
+WORKDIR /src
+COPY --from=builder /app .
+EXPOSE 80
+RUN chmod +x ./script/start.sh
+CMD ["./script/start.sh"]
