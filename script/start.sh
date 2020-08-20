@@ -7,7 +7,7 @@ set -m
  /src/bin/sysl-playground &
   
 # Start the helper process
-cd plantuml && mvn jetty:run
+java -jar target/dependency/jetty-runner.jar --path /plantuml target/plantuml.war
   
 # the my_helper_process might need to know how to wait on the
 # primary process to start before it does its work and returns
