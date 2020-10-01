@@ -138,5 +138,20 @@ var exampleList = [
         name: 'Export',
         command: `sysl export --format=openapi3 --app-name=SimpleOpenAPI3 --output=simple-openapi3.yaml simple-openapi3.sysl`,
         file: 'simple-openapi3.sysl'
-    }
+    },
+    {
+        name: "Control Flow",
+        command: `sysl sd -o "3_project.svg" -s "Foo <- todos" control-flow.sysl`,
+        file: "control-flow.sysl",
+      },
+      {
+        name: "Data Model Diagram",
+        command: `sysl data -o "3_project.svg" -j Project data-model-diagram.sysl`,
+        file: "data-model-diagram.sysl",
+      },
+      {
+        name: "Reserved Attributes",
+        command: `sysl sd -o "3_project.svg" -s "Project <- Seq" data-model-diagram.sysl`,
+        file: "reserved-attributes.sysl",
+      }
 ]
