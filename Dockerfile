@@ -1,3 +1,5 @@
+FROM anzbank/sysl as sysl
+
 FROM golang:1.14-alpine AS builder
 WORKDIR /app
 COPY . .
@@ -20,8 +22,8 @@ ENV PORT=80
 RUN apk add --no-cache openjdk8 graphviz font-noto-cjk bash
 ENV SYSL_PLANTUML=http://localhost:8080/plantuml
 
-#install sysl
-RUN GO111MODULE=on go get -u github.com/anz-bank/sysl/cmd/sysl
+COPY --from=sysl /sysl /usr/local/bin
+
 RUN sysl --version
 
 WORKDIR /src
